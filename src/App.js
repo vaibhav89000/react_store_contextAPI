@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import useAuth from './hooks/useAuth';
 
 function App() {
+
+  const authHook = useAuth();
+
+  const handleLogin = () => {
+    authHook.login("token is logged in")
+  }
+
+  const handleLogout = () => {
+    authHook.logout()
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Context Api
+
+      {authHook.isLoggedIn && <div>logged in</div>}
+      <br></br>
+      <button onClick={handleLogin}>login</button>
+      <button onClick={handleLogout}>logout</button>
+
     </div>
   );
 }
